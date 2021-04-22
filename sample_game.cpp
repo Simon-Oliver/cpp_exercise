@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 int getInput(std::string message)
 {
@@ -9,17 +11,36 @@ int getInput(std::string message)
     return number;
 }
 
-int renderMenu()
+void renderMenu()
 {
     std::cout << "0. Quit \n1. Play Game \n";
 }
 
-int playing()
+void playing()
 {
-    std::cout << "Playing Game...1" << std::endl;
-    std::cout << "Playing Game...2" << std::endl;
-    std::cout << "Playing Game...3" << std::endl;
-    return false;
+    int count = 0;
+    int guess = 0;
+    int random = rand() % 11;
+
+    std::cout << random << std::endl;
+
+    do
+    {
+        std::cout << "-----" << count << std::endl;
+        std::cout << "-----" << random << std::endl;
+        std::cout << "Guess the number: ";
+        std::cin >> guess;
+        count++;
+    } while (count < 5 && guess != random);
+
+    if (guess == random && count < 5)
+    {
+        std::cout << "You guessed the number in untder 5 tries!" << std::endl;
+    }
+    else if (count >= 5)
+    {
+        std::cout << "You didn't guess the number. Sorry!" << std::endl;
+    }
 }
 
 int main(void)
