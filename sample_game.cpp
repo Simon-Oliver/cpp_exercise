@@ -45,6 +45,7 @@ void playing()
 
 int main(void)
 {
+    srand(time(NULL));
     int choice;
     do
     {
