@@ -1,14 +1,35 @@
 #include <iostream>
 
+void log_arr(int array[], int size)
+{
+
+    for (size_t i = 0; i < size; i++)
+    {
+        std::cout << "------->" << array[i] << std::endl;
+    }
+}
+
 int main(void)
 {
-    int guesses[7];
-    bool is_true;
+    const int SIZE = 100;
+    int guesses[SIZE];
+    int count;
 
-    guesses[0] = 1;
-    guesses[1] = 2;
-    guesses[2] = 3;
+    for (size_t i = 0; i < SIZE; i++)
+    {
+        if (std::cin >> guesses[i])
+        {
+            count++;
+        }
+        else
+        {
+            break;
+        }
+    }
 
-    std::cout << sizeof(is_true) << std::endl;
+    // int array_size = sizeof(guesses) / sizeof(int);
+
+    log_arr(guesses, count);
+
     return 0;
 }
