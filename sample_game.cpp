@@ -16,31 +16,47 @@ void renderMenu()
     std::cout << "0. Quit \n1. Play Game \n";
 }
 
+void log_arr(int array[], int size)
+{
+
+    for (size_t i = 0; i < size; i++)
+    {
+        std::cout << "------->" << array[i] << std::endl;
+    }
+}
+
 void playing()
 {
     int count = 0;
-    int guess = 0;
+    int guesses[100];
     int random = rand() % 11;
-
+    std::cout << "Guess the number: ";
     std::cout << random << std::endl;
 
-    do
+    while (true)
     {
-        std::cout << "-----" << count << std::endl;
-        std::cout << "-----" << random << std::endl;
-        std::cout << "Guess the number: ";
-        std::cin >> guess;
+        int guess = 0;
         count++;
-    } while (count < 5 && guess != random);
+        std::cin >> guess;
+        if (guess == random)
+        {
+            std::cout << "You Win!" << std::endl;
+            guesses[count] = guess;
+            break;
+        }
+        else if (guess > random)
+        {
+            guesses[count] = guess;
+            std::cout << "Your guess is too high" << std::endl;
+        }
+        else if (guess < random)
+        {
+            guesses[count] = guess;
+            std::cout << "Your guess is too low" << std::endl;
+        }
+    };
 
-    if (guess == random && count < 5)
-    {
-        std::cout << "You guessed the number in untder 5 tries!" << std::endl;
-    }
-    else if (count >= 5)
-    {
-        std::cout << "You didn't guess the number. Sorry!" << std::endl;
-    }
+    log_arr(guesses, count);
 }
 
 int main(void)
