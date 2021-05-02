@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 
 int getInput(std::string message)
 {
@@ -16,19 +17,20 @@ void renderMenu()
     std::cout << "0. Quit \n1. Play Game \n";
 }
 
-void log_arr(int array[], int size)
+void log_vector(std::vector<int> &arr)
 {
 
-    for (size_t i = 0; i < size; i++)
+    for (size_t i = 0; i < arr.size(); i++)
     {
-        std::cout << "------->" << array[i] << std::endl;
+        std::cout << "------->" << arr[i] << std::endl;
     }
 }
 
 void playing()
 {
-    int count = 0;
-    int guesses[100];
+
+    std::vector<int> guesses;
+    int count = guesses.size();
     int random = rand() % 11;
     std::cout << "Guess the number: ";
     std::cout << random << std::endl;
@@ -36,27 +38,26 @@ void playing()
     while (true)
     {
         int guess = 0;
-        count++;
         std::cin >> guess;
+        guesses.push_back(guess);
         if (guess == random)
         {
             std::cout << "You Win!" << std::endl;
-            guesses[count] = guess;
             break;
         }
         else if (guess > random)
         {
-            guesses[count] = guess;
+
             std::cout << "Your guess is too high" << std::endl;
         }
         else if (guess < random)
         {
-            guesses[count] = guess;
+
             std::cout << "Your guess is too low" << std::endl;
         }
     };
 
-    log_arr(guesses, count);
+    log_vector(guesses);
 }
 
 int main(void)
