@@ -1,7 +1,7 @@
-Max Muster
-Sarah Tester
-Livia Doe
-Oliver Barkley
-Peter Pan
-Obi Wan
-Luke Skywalker
+Max Muster 28
+Sarah Tester 55
+Livia Doe 33 
+Oliver Barkley 88 
+Peter Pan 10
+Obi Wan 99 
+Luke Skywalker 102

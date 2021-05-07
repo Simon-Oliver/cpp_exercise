@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <fstream>
 
 int getInput(std::string message)
 {
@@ -28,10 +29,16 @@ void log_vector(std::vector<int> &arr)
 
 void playing()
 {
-
+    std::ofstream output;
+    output.open("score.txt", std::ios_base::app);
     std::vector<int> guesses;
     int count = guesses.size();
     int random = rand() % 11;
+    std::string player;
+
+    std::cin.get();
+    std::cout << "Enter your name: ";
+    std::getline(std::cin, player);
     std::cout << "Guess the number: ";
     std::cout << random << std::endl;
 
@@ -42,7 +49,9 @@ void playing()
         guesses.push_back(guess);
         if (guess == random)
         {
-            std::cout << "You Win!" << std::endl;
+            std::cout << "Well done " << player << ". You Win!" << std::endl;
+            std::string var = std::string("User: ") + player + " Count: " + std::to_string(guesses.size()) + "\n";
+            output << var;
             break;
         }
         else if (guess > random)
