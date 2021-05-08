@@ -1,3 +1,4 @@
-User: Oli Count: 10
-User: Simi Count: 11
-User: Rhi Count: 1
+user, count
+Simon, 7
+Oli, 8
+Rhi, 10

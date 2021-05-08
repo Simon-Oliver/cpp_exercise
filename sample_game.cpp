@@ -13,9 +13,26 @@ int getInput(std::string message)
     return number;
 }
 
+void show_high_score()
+{
+    std::ifstream file("score.txt");
+    std::vector<std::string> scores;
+
+    std::string input;
+    while (getline(file, input))
+    {
+        scores.push_back(input);
+    }
+
+    for (size_t i = 1; i < scores.size(); i++)
+    {
+        std::cout << "Player " << i << ": " << scores[i] << std::endl;
+    }
+}
+
 void renderMenu()
 {
-    std::cout << "0. Quit \n1. Play Game \n";
+    std::cout << "0. Quit \n1. Play Game \n2. Show Highscore \n";
 }
 
 void log_vector(std::vector<int> &arr)
@@ -50,7 +67,7 @@ void playing()
         if (guess == random)
         {
             std::cout << "Well done " << player << ". You Win!" << std::endl;
-            std::string var = std::string("User: ") + player + " Count: " + std::to_string(guesses.size()) + "\n";
+            std::string var = std::string() + player + ", " + std::to_string(guesses.size()) + "\n";
             output << var;
             break;
         }
@@ -85,6 +102,10 @@ int main(void)
         case 1:
             std::cout << "Playing Game" << std::endl;
             playing();
+            break;
+        case 2:
+            std::cout << "Show Highscore" << std::endl;
+            show_high_score();
             break;
         }
     } while (choice != 0);
