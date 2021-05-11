@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
@@ -16,19 +17,55 @@ int getInput(std::string message)
 void show_high_score()
 {
     std::ifstream file("score.txt");
-    std::vector<std::string> scores;
-
-    std::string input;
-    while (getline(file, input))
+    std::vector<std::vector<std::string> > scores;
+    std::string str;
+    getline(file, str);
+    while (getline(file, str))
     {
-        scores.push_back(input);
+        std::istringstream iss(str);
+        std::string token;
+        std::vector<std::string> line;
+
+        while (getline(iss, token, ','))
+        {
+            line.push_back(token);
+        }
+        scores.push_back(line);
     }
 
-    for (size_t i = 1; i < scores.size(); i++)
+    int top_score = 0;
+
+    for (int i = 0; scores.size() > i; i++)
     {
-        std::cout << "Player " << i << ": " << scores[i] << std::endl;
+        int temp = stoi(scores[i][1]);
+        if (top_score == 0)
+        {
+            top_score = stoi(scores[i][1]);
+        }
+        else if (temp < top_score)
+        {
+            top_score = temp;
+        }
     }
+    std::cout << top_score << std::endl;
 }
+
+// void show_high_score()
+// {
+//     std::ifstream file("score.txt");
+//     std::vector<std::string> scores;
+
+//     std::string input;
+//     while (getline(file, input))
+//     {
+//         scores.push_back(input);
+//     }
+
+//     for (size_t i = 1; i < scores.size(); i++)
+//     {
+//         std::cout << "Player " << i << ": " << scores[i] << std::endl;
+//     }
+// }
 
 void renderMenu()
 {
