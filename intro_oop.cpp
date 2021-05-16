@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 struct Person
 {
@@ -16,15 +17,57 @@ private:
     std::string status = "active";
 };
 
+class User
+{
+public:
+    std::string user_name;
+    std::string email;
+};
+
+int add_unique_user(std::vector<User> &users, User user)
+{
+    for (int i = 0; i < users.size(); i++)
+    {
+        if (users[i].user_name == user.user_name)
+        {
+            return i;
+        }
+    }
+    users.push_back(user);
+    return users.size() - 1;
+};
+
 int main()
 {
-    Person user_1;
-    user_1.first_name = "Max";
-    user_1.last_name = "Muster";
-    user_1.email = "test@test.com";
-    user_1.age = 61;
-    user_1.bod = 1961;
+    std::vector<User> users;
 
-    std::cout << user_1.get_name() << std::endl;
+    User user_1;
+    user_1.user_name = "CrazyMax";
+    user_1.email = "test@test.com";
+
+    User user_2;
+    user_2.user_name = "Sal89";
+    user_2.email = "test@test.com";
+
+    User user_3;
+    user_3.user_name = "Johnny99";
+    user_3.email = "test@test.com";
+
+    User user_test;
+    user_test.user_name = "SimSum";
+    user_test.email = "test@test.com";
+
+    users.push_back(user_1);
+    users.push_back(user_2);
+    users.push_back(user_3);
+
+    add_unique_user(users, user_test);
+
+    std::cout << add_unique_user(users, user_test) << std::endl;
+
+    for (User u : users)
+    {
+        std::cout << u.user_name << std::endl;
+    }
     return 0;
 }
