@@ -34,6 +34,12 @@ public:
     };
 };
 
+std::ostream &operator<<(std::ostream &output, Person pers)
+{
+    output << "This is " << pers.name << ". And their email is " << pers.email;
+    return output;
+};
+
 int main()
 {
     User pos1, pos2;
@@ -50,5 +56,8 @@ int main()
 
     std::cout << is_same_person << std::endl;
     std::cout << is_same_person2 << std::endl;
+
+    std::cout << person1 << std::endl;
+
     return 0;
 }
