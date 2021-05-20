@@ -1,24 +1,21 @@
 #include <iostream>
 #include "person.h"
-
-class User
-{
-public:
-    int age = 20;
-    std::string name = "Max";
-    User operator+(User user)
-    {
-        User temp_user;
-        temp_user.name = name + " " + user.name;
-        temp_user.age = age + user.age;
-        return temp_user;
-    }
-};
+#include "user.h"
 
 int main()
 {
     User pos1, pos2;
     User pos3 = pos1 + pos2;
+    std::vector<std::string> classes{"Class1", "Class2", "Class3"};
+    std::vector<std::string> fields{"Math", "Chemistry"};
+    Teacher t1(classes, fields);
+
+    std::cout << t1.name << std::endl;
+
+    for (std::string field : t1.classes)
+    {
+        std::cout << field << std::endl;
+    }
 
     std::cout << pos3.age << std::endl;
 
