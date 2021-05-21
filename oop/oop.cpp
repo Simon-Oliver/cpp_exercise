@@ -1,6 +1,7 @@
 #include <iostream>
 #include "person.h"
 #include "user.h"
+#include "student.h"
 
 int main()
 {
@@ -30,6 +31,11 @@ int main()
     std::cout << is_same_person2 << std::endl;
 
     std::cout << person1 << std::endl;
+
+    Student stud1;
+    std::vector<std::string> cl{"ClassStud1", "ClassStud2", "ClassStud3"};
+    stud1.classes = cl;
+    stud1.output();
 
     return 0;
 }
